@@ -80,6 +80,16 @@ macOS 文件写入 NTFS 时报 `Operation not permitted`，原因有两个：
 
 ---
 
+## 硬盘同步建议
+
+本工程主要面向 **WD MyBook** 盘，使用 rsync 增量同步。
+
+如果你用的是 **希捷 (Seagate) Beanut** 盘，可以考虑使用希捷官方的 **Toolkit** 软件。Toolkit 提供图形化同步、备份、镜像等功能，免去命令行操作，对希捷硬盘兼容性更好。
+
+> 两种方案可以并存：MyBook 走 rsync 脚本，Beanut 走 Toolkit，互不干扰。
+
+---
+
 ## 环境信息
 
 | 组件 | 版本/路径 |
