@@ -14,6 +14,7 @@
 |------|------|
 | [INSTALL.md](INSTALL.md) | 安装步骤 |
 | [USAGE.md](USAGE.md) | 使用方式 |
+| [BACKUP_SOLUTIONS.md](BACKUP_SOLUTIONS.md) | 工作备份方案建议 |
 
 ---
 
@@ -95,25 +96,25 @@ macOS 文件写入 NTFS 时报 `Operation not permitted`，原因有两个：
 
 ## 硬盘同步建议
 
-本工程主要面向 **WD MyBook** 盘，使用 rsync 增量同步。
+> ⚠️ **重要**：`sync_mirror.command` 基于 rsync，仅适用于个人数据的定期归档，**不推荐用于日常工作备份**。工作备份应使用功能完整的第三方同步软件，详见 [BACKUP_SOLUTIONS.md](BACKUP_SOLUTIONS.md)。
 
 ### 西部数据官方工具
 
-WD 也提供官方管理软件，但同步功能不如希捷 Toolkit 完善：
+WD 官方管理软件在文件同步场景下能力有限：
 
 | 工具 | 说明 |
 |------|------|
-| **WD Discovery** | 桌面管理软件，支持 macOS。主要用于硬盘检测、加密管理、社交媒体导入，备份/同步功能较基础。已有最新版 5.3。 |
-| **Acronis True Image for WD** | 全盘镜像备份工具，WD 用户免费。偏向系统级整机备份，不适合日常文件增量同步。 |
-| **WD Backup** | 已停产，被 WD Discovery 取代。 |
+| **WD Discovery** | 桌面管理软件，支持 macOS。主要用于硬盘检测、加密管理、社交媒体导入，备份/同步功能较基础。 |
+| **Acronis True Image for WD** | OEM 免费版，限制多（激活窗口、硬件绑定、功能精简），偏向系统级整机镜像，非日常同步工具。 |
+| **WD Backup** | 已于 2022 年 8 月停产。 |
 
-> 结论：WD 官方工具在文件同步场景下不如 rsync 脚本灵活。MyBook 盘继续用 rsync 即可，没必要折腾 WD Discovery。
+> WD 没有类似希捷 Toolkit 的官方增量同步工具。建议使用 **FreeFileSync**（开源免费）等第三方软件。
 
 ### 希捷官方工具
 
-如果用的是 **希捷 (Seagate) Beanut** 盘，推荐使用希捷官方的 **Toolkit** 软件。Toolkit 提供图形化同步、备份、镜像等功能，免去命令行操作，对希捷硬盘兼容性更好。
+如果用的是 **希捷 (Seagate) Beanut** 盘，推荐使用希捷官方的 **Toolkit** 软件，提供图形化增量同步功能。
 
-> 两种方案并存：MyBook 走 rsync 脚本，Beanut 走 Toolkit，互不干扰。
+> 两种方案并存：MyBook 走第三方同步软件，Beanut 走 Toolkit，互不干扰。rsync 脚本仅用于归档场景。
 
 ---
 
