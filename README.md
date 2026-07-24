@@ -84,9 +84,23 @@ macOS 文件写入 NTFS 时报 `Operation not permitted`，原因有两个：
 
 本工程主要面向 **WD MyBook** 盘，使用 rsync 增量同步。
 
-如果你用的是 **希捷 (Seagate) Beanut** 盘，可以考虑使用希捷官方的 **Toolkit** 软件。Toolkit 提供图形化同步、备份、镜像等功能，免去命令行操作，对希捷硬盘兼容性更好。
+### 西部数据官方工具
 
-> 两种方案可以并存：MyBook 走 rsync 脚本，Beanut 走 Toolkit，互不干扰。
+WD 也提供官方管理软件，但同步功能不如希捷 Toolkit 完善：
+
+| 工具 | 说明 |
+|------|------|
+| **WD Discovery** | 桌面管理软件，支持 macOS。主要用于硬盘检测、加密管理、社交媒体导入，备份/同步功能较基础。已有最新版 5.3。 |
+| **Acronis True Image for WD** | 全盘镜像备份工具，WD 用户免费。偏向系统级整机备份，不适合日常文件增量同步。 |
+| **WD Backup** | 已停产，被 WD Discovery 取代。 |
+
+> 结论：WD 官方工具在文件同步场景下不如 rsync 脚本灵活。MyBook 盘继续用 rsync 即可，没必要折腾 WD Discovery。
+
+### 希捷官方工具
+
+如果用的是 **希捷 (Seagate) Beanut** 盘，推荐使用希捷官方的 **Toolkit** 软件。Toolkit 提供图形化同步、备份、镜像等功能，免去命令行操作，对希捷硬盘兼容性更好。
+
+> 两种方案并存：MyBook 走 rsync 脚本，Beanut 走 Toolkit，互不干扰。
 
 ---
 
