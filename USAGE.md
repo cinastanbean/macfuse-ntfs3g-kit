@@ -9,8 +9,8 @@
 插上硬盘后，按顺序双击：
 
 ```
-mount_ntfs.command    →   sync_mirror.command    →   unmount_ntfs.command
-   （挂载）                 （同步）                    （卸载）
+mount_ntfs.command    →   sync_mirror.command / 其他工具   →   unmount_ntfs.command
+   （挂载）                 （同步）                                （卸载）
 ```
 
 ### 1. mount_ntfs.command — 挂载
