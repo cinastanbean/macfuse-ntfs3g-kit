@@ -39,6 +39,19 @@ Mac 原生只支持读取 NTFS，不支持写入。因为 NTFS 是微软的闭�
 
 要读写 NTFS，需要第三方驱动。本方案选择 macFUSE + ntfs-3g，因为它是唯一完全免费开源的路线。
 
+### 插盘时的默认行为
+
+当你把 NTFS 硬盘插入 Mac 后，系统会用 **macOS 自带的 NTFS 驱动**自动挂载，但这个驱动只支持**读取**，磁盘是只读状态。
+
+`mount_ntfs.command` 脚本做的事情就是把它换成可读写的 ntfs-3g：
+
+```
+1. 卸载 →   diskutil unmount（解除 macOS 只读挂载）
+2. 重载 →   ntfs-3g -o allow_other,...（用 ntfs-3g 重新读写挂载）
+```
+
+所以每次插盘后需要先执行 `mount_ntfs.command`，之后才能正常写入。
+
 ---
 
 ## 同步方案踩坑记录
