@@ -22,7 +22,7 @@ mount_ntfs.command    →   sync_mirror.command    →   unmount_ntfs.command
 
 ### 2. sync_mirror.command — 增量同步
 
-将本地 `Mirror` 目录增量同步到 MyBook 硬盘。
+将本地 `Mirror` 目录增量同步到外接 NTFS 移动硬盘。
 
 - 第一次全量复制约 23G，后续只传输变化文件
 - 源目录删掉的文件，目标也会同步删除
@@ -41,7 +41,7 @@ mount_ntfs.command    →   sync_mirror.command    →   unmount_ntfs.command
 
 ```bash
 mount | grep macfuse
-# 应显示类似: /dev/disk4s2 on /Volumes/MyBook (macfuse, local, synchronous)
+# 应显示类似: /dev/disk4s2 on /Volumes/<盘名> (macfuse, local, synchronous)
 ```
 
 ## 注意事项

@@ -1,39 +1,43 @@
 #!/bin/bash
 # ============================================================
 # Mirror 目录同步脚本 (rsync 增量版，适配 NTFS)
-# 将电脑本地 Mirror 同步到 MyBook 移动硬盘
+# 将电脑本地 Mirror 同步到外接 NTFS 移动硬盘
 # 双击 .command 文件即可运行
 # ============================================================
 
-SRC="/Users/jinniu/Desktop/Beanut-Mirror/Mirror"
-DST="/Volumes/MyBook/jinniu-Mirror"
+# ---- 配置区域（按你的实际情况修改） ----
+SRC="/path/to/your/local/mirror"
+DST="/Volumes/<你的NTFS硬盘名>/<目标目录>"
+# ----------------------------------------
+
 RSYNC="/opt/anaconda3/bin/rsync"
+DST_VOL=$(echo "$DST" | cut -d'/' -f3)
 
 clear
 
 echo "========================================="
-echo "   Mirror 增量同步到 MyBook"
+echo "   Mirror 增量同步"
 echo "========================================="
 echo ""
 
-echo "检查 MyBook 是否已挂载..."
-if ! mount | grep -q "/Volumes/MyBook"; then
+echo "检查目标硬盘是否已挂载..."
+if ! mount | grep -q "/Volumes/$DST_VOL"; then
     echo ""
-    echo "MyBook 未挂载，请先插入硬盘并运行 mount_mybook.command"
+    echo "目标硬盘未挂载，请先插入硬盘并运行 mount_ntfs.command"
     echo ""
     read -p "按回车键退出..."
     exit 1
 fi
 
 echo "检查读写权限..."
-if ! touch /Volumes/MyBook/.write_test 2>/dev/null; then
+if ! touch "$DST/.write_test" 2>/dev/null; then
     echo ""
-    echo "MyBook 为只读模式，请先运行 mount_mybook.command 重新挂载"
+    echo "目标硬盘为只读模式，请先运行 mount_ntfs.command 重新挂载"
     echo ""
     read -p "按回车键退出..."
     exit 1
 fi
-rm -f /Volumes/MyBook/.write_test
+rm -f "$DST/.write_test"
 
 echo "源目录: $SRC"
 echo "目标目录: $DST"
