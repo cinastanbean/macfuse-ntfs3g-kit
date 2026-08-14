@@ -9,8 +9,8 @@
 插上硬盘后，按顺序双击：
 
 ```
-mount_ntfs.command    →   sync_mirror.command / 其他工具   →   unmount_ntfs.command
-   （挂载）                 （同步）                                （卸载）
+mount_ntfs.command    →   同步（见下方建议）    →   unmount_ntfs.command
+   （挂载）                 （同步）                    （卸载）
 ```
 
 ### 1. mount_ntfs.command — 挂载
@@ -20,15 +20,17 @@ mount_ntfs.command    →   sync_mirror.command / 其他工具   →   unmount_n
 - 需要输入管理员密码
 - 支持同时挂载多个盘
 
-### 2. sync_mirror.command — 增量同步
+### 2. 同步 — 方案优先级
 
-将本地 `Mirror` 目录增量同步到外接 NTFS 移动硬盘。
+> ⚠️ 数据备份请务必按以下优先级选择工具，**不要直接使用命令行同步脚本**。详细说明见 [BACKUP_SOLUTIONS.md](BACKUP_SOLUTIONS.md)。
 
-- 第一次全量复制约 23G，后续只传输变化文件
-- 源目录删掉的文件，目标也会同步删除
-- 不需要密码
+| 优先级 | 方案 | 说明 |
+|--------|------|------|
+| **首选** | 希捷官方 **Toolkit**（或 WD 配套的第三方同步软件） | 图形化、增量对比、冲突处理、版本历史，功能完整可靠 |
+| **其次** | 希捷 Toolkit + 第三方同步工具组合（如 FreeFileSync） | 多盘场景下各取所长，互为补充 |
+| **谨慎** | `sync_mirror.command` 命令行脚本 | ⚠️ **风险很大**：无图形界面、无版本历史、无冲突处理，误操作（如 `--delete`）可能造成数据不可逆丢失，仅在明确了解后果时使用 |
 
-> 如需同步到其他盘，编辑 `sync_mirror.command` 中的 `DST` 变量。
+> 日常备份推荐首选或其次方案；`sync_mirror.command` 仅作个人数据临时归档的兜底手段。
 
 ### 3. unmount_ntfs.command — 卸载
 

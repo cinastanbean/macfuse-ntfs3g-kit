@@ -94,27 +94,11 @@ macOS 文件写入 NTFS 时报 `Operation not permitted`，原因有两个：
 
 ---
 
-## 硬盘同步建议
+## 数据备份与同步建议
 
-> ⚠️ **重要**：`sync_mirror.command` 基于 rsync，仅适用于个人数据的定期归档，**不推荐用于日常工作备份**。工作备份应使用功能完整的第三方同步软件，详见 [BACKUP_SOLUTIONS.md](BACKUP_SOLUTIONS.md)。
+> ⚠️ **重要**：`sync_mirror.command` 基于 rsync，风险较大（无图形界面、无版本历史、无冲突处理），**仅适用于个人数据临时归档，不推荐用于日常工作备份**。
 
-### 西部数据官方工具
-
-WD 官方管理软件在文件同步场景下能力有限：
-
-| 工具 | 说明 |
-|------|------|
-| **WD Discovery** | 桌面管理软件，支持 macOS。主要用于硬盘检测、加密管理、社交媒体导入，备份/同步功能较基础。 |
-| **Acronis True Image for WD** | OEM 免费版，限制多（激活窗口、硬件绑定、功能精简），偏向系统级整机镜像，非日常同步工具。 |
-| **WD Backup** | 已于 2022 年 8 月停产。 |
-
-> WD 没有类似希捷 Toolkit 的官方增量同步工具。建议使用 **FreeFileSync**（开源免费）等第三方软件。
-
-### 希捷官方工具
-
-如果用的是 **希捷 (Seagate)** NTFS 硬盘，推荐使用希捷官方的 **Toolkit** 软件，提供图形化增量同步功能。
-
-> 两种方案并存：WD 盘走第三方同步软件，希捷盘走 Toolkit，互不干扰。rsync 脚本仅用于归档场景。
+备份与同步工具的选择（希捷 Toolkit、第三方软件、rsync 的风险对比等），详见专题文档 [BACKUP_SOLUTIONS.md](BACKUP_SOLUTIONS.md)。
 
 ---
 
