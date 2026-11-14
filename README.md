@@ -15,6 +15,7 @@
 | [INSTALL.md](INSTALL.md) | 安装步骤 |
 | [USAGE.md](USAGE.md) | 使用方式 |
 | [BACKUP_SOLUTIONS.md](BACKUP_SOLUTIONS.md) | 工作备份方案建议 |
+| [KNOWN_ISSUES.md](KNOWN_ISSUES.md) | 已知问题、稳定性说明与故障排查 |
 
 ---
 
@@ -95,6 +96,8 @@ macOS 文件写入 NTFS 时报 `Operation not permitted`，原因有两个：
 ---
 
 ## ⚠️ 第三方同步工具的反向覆盖风险
+
+> 完整根因、已修复项与恢复手段见 [KNOWN_ISSUES.md](KNOWN_ISSUES.md) 第 0 节。
 
 `mount_ntfs.command` 挂载后，盘上文件由 ntfs-3g 管理。若 macOS 与 ntfs-3g 时区未统一，盘上文件的修改时间(mtime)会被偏移（典型为整段偏移本地时区，如中国 +8 小时）。
 
